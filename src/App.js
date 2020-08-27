@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./style/App.css";
 import Login from "./Login";
 import Player from "./Player";
@@ -9,7 +9,7 @@ const spotify = new SpotityWebApi();
 
 function App() {
   // const [token, setToken] = useState(null);
-  const [{ user, token }, dispatch] = useDataLayerValue();
+  const [{ token }, dispatch] = useDataLayerValue();
   // Run code based on a given condition
   useEffect(() => {
     //code
@@ -31,12 +31,18 @@ function App() {
         });
       });
 
-      spotify.getUserPlaylists().then((playlists) =>
+      spotify.getUserPlaylists().then((playlists) => {
         dispatch({
           type: "SET_PLAYLISTS",
           playlists: playlists,
-        })
-      );
+        });
+      });
+      spotify.getPlaylist("37i9dQZEVXcEKznT9ViMcN").then((response) => {
+        dispatch({
+          type: "SET_DISCOVER_WEEKLY",
+          discover_weekly: response,
+        });
+      });
     }
   }, []);
 
