@@ -8,7 +8,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
 
 function Sidebar() {
-  const [{ playlists }, displatch] = useDataLayerValue();
+  const [{ playlists }, dispatch] = useDataLayerValue();
   return (
     <div className="sidebar">
       <img
